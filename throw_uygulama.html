@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <h2>Form ile Throw Uygulaması</h2>
+    <p>Lütfen 0 ile 10 arasında bir sayı giriniz...</p>
+    <form>
+        Ders notu:<input type="text" id="dersnotu"><br>
+        <input type="button" value="Kontrol et" onclick="kontrol()">
+    </form>
+    <p id="hatailetisi"></p>
+    <p id="girilendeger"></p>
+    <script>
+        function kontrol(){
+            var dersnotu,hatailetisi;
+            hatailetisi=document.getElementById("hatailetisi");
+            hatailetisi.innerHTML="";
+
+            dersnotu=document.getElementById("dersnotu").value;
+
+            try{
+                if(dersnotu == "") throw "Ders notu girilmemiş!";
+                if(isNaN(dersnotu)) throw "Sayısal değer girilmemiş!";
+                dersnotu=Number(dersnotu);
+                if(dersnotu<0 || dersnotu>10) throw "Ders notu 0-10 arasında olmalı!";
+
+            }
+            catch(err){
+                hatailetisi.innerHTML="hata:"+err;
+
+            }
+
+            finally{
+                document.getElementById("girilendeger").innerHTML="Girilen değer:"+ dersnotu;
+            }
+        }
+    </script>
+</body>
+
+</html>
